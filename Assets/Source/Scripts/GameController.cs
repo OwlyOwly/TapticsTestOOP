@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    public Enemy currentEnemy { get; private set; }
-    public int killsToWin { get; private set; } = 10;
-    public int enemyCount { get; private set; } = 0;
-    public int damagePerClick { get; private set; } = 10;
+    public Enemy CurrentEnemy { get; private set; }
+    public int KillsToWin { get; private set; } = 10;
+    public int EnemyCount { get; private set; } = 0;
+    public int DamagePerClick { get; private set; } = 10;
 
     public event Action OnEnemySpawnedEvent;
 
@@ -20,23 +20,23 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         ActivateNextEnemy();
-        timer.onTimeIsOver += LaunchLoseSequence;
+        timer.OnTimeIsOver += LaunchLoseSequence;
     }
 
     private void ActivateNextEnemy()
     {
-        if (enemyCount == killsToWin)
+        if (EnemyCount == KillsToWin)
         {
             LaunchVictorySequence();
         }
         else
         {
-            currentEnemy = ObjectPool.SharedInstance.GetNextEnemy(enemyCount).GetComponent<Enemy>();
-            currentEnemy.OnEnemyDiedEvent += ActivateNextEnemy;
-            currentEnemy.transform.position = spawnPosition;
-            currentEnemy.gameObject.SetActive(true);
+            CurrentEnemy = ObjectPool.SharedInstance.GetNextEnemy(EnemyCount).GetComponent<Enemy>();
+            CurrentEnemy.OnEnemyDiedEvent += ActivateNextEnemy;
+            CurrentEnemy.transform.position = spawnPosition;
+            CurrentEnemy.gameObject.SetActive(true);
             OnEnemySpawnedEvent?.Invoke();
-            enemyCount++;
+            EnemyCount++;
         }
     }
 
@@ -65,6 +65,6 @@ public class GameController : MonoBehaviour
 
     public void DealDamage()
     {
-        currentEnemy.GetDamage(damagePerClick);
+        CurrentEnemy.GetDamage(DamagePerClick);
     }
 }

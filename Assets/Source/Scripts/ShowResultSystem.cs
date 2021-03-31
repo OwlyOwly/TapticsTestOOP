@@ -7,9 +7,9 @@ using UnityEngine.Networking;
 
 public class ShowResultSystem: MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI result;
-    [SerializeField] TextMeshProUGUI record;
-    [SerializeField] TextMeshProUGUI leaderboardText;
+    [SerializeField] private TextMeshProUGUI result;
+    [SerializeField] private TextMeshProUGUI record;
+    [SerializeField] private TextMeshProUGUI leaderboardText;
 
     private Dictionary<string, float> playerLeaderboard = new Dictionary<string, float>();
     private string jsonURI = "https://taptics.b-cdn.net/files/leaderboard.json";

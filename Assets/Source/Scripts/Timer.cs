@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    public event Action onTimeIsOver;
+    public event Action OnTimeIsOver;
     
     private float timeRemaining = 60;
     private float totalTime = 60;
@@ -31,7 +31,7 @@ public class Timer : MonoBehaviour
             {
                 timeRemaining = 0;
                 timerIsRunning = false;
-                onTimeIsOver?.Invoke();
+                OnTimeIsOver?.Invoke();
             }
         }
     }
